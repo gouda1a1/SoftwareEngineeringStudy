@@ -89,4 +89,23 @@ class ResizableArray {
         return lastItem
     }
 
+    fun delete(index: Int) {
+        if (index < 0 || index > size) {
+            throw IndexOutOfBoundsException()
+        } else {
+            size--
+            val newArray = IntArray(capacity)
+            for (i in 0 until index) {
+                newArray[i] = array[i]
+            }
+
+            for (i in index until size ) {
+                newArray[i] = array[i+1]
+            }
+            array = newArray
+        }
+
+    }
+
+
 }

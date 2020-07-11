@@ -25,6 +25,10 @@ public fun main(args: Array<String>) {
 
     println(arrayList.toString())
 
+    arrayList.delete(5)
+    println(arrayList.toString())
+
+
 
 
 
