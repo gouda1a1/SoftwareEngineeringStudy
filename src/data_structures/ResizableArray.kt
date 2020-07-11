@@ -1,5 +1,6 @@
 package data_structures
 
+import java.lang.Exception
 import java.lang.IndexOutOfBoundsException
 
 class ResizableArray {
@@ -8,15 +9,8 @@ class ResizableArray {
     private var size = 0
     fun push(input: Int) {
         if (size == capacity) {
-            capacity *= 2
-            val newArray = IntArray(capacity)
-            var index = 0
-            array.iterator().forEach {
-                newArray[index] = it
-                index++
-            }
-            array = newArray
-            newArray[size] = index
+           resize(capacity*2)
+            array[size] = input
 
         } else {
             array[size] = input
@@ -83,9 +77,15 @@ class ResizableArray {
     }
 
     fun pop(): Int {
+        if(size==0){
+            throw Exception("Array is empty")
+        }
         val lastItem = array[size - 1]
         array[size - 1] = 0
         size--
+        if(size==capacity/4){
+            resize(capacity/2)
+        }
         return lastItem
     }
 
@@ -99,13 +99,44 @@ class ResizableArray {
                 newArray[i] = array[i]
             }
 
-            for (i in index until size ) {
-                newArray[i] = array[i+1]
+            for (i in index until size) {
+                newArray[i] = array[i + 1]
             }
             array = newArray
         }
 
     }
+
+    fun remove(item: Int) {
+        for (i in 0 until size) {
+            if (array[i] == item) {
+                delete(i)
+            }
+        }
+    }
+
+    fun find(item: Int): Int {
+        for (i in 0 until size) {
+            if (array[i] == item) {
+                return i
+            }
+        }
+        return -1
+    }
+
+
+    private fun resize(capacity:Int){
+        this.capacity=capacity
+        val newArray = IntArray(capacity)
+
+        for(i in 0 until size){
+            newArray[i] = array[i]
+
+        }
+        array = newArray
+    }
+
+
 
 
 }

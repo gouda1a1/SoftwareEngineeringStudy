@@ -28,6 +28,61 @@ public fun main(args: Array<String>) {
     arrayList.delete(5)
     println(arrayList.toString())
 
+    arrayList.remove(77777)
+
+    println(arrayList.toString())
+
+    println(arrayList.find(66666))
+    println(arrayList.find(77777))
+
+
+    arrayList.pop()
+
+    arrayList.pop()
+
+    arrayList.pop()
+
+    arrayList.pop()
+
+    arrayList.pop()
+
+    arrayList.pop()
+    arrayList.pop()
+    arrayList.pop()
+    arrayList.pop()
+    arrayList.pop()
+    arrayList.pop()
+    arrayList.pop()
+    arrayList.pop()
+
+
+
+
+
+    println(arrayList.toString())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
