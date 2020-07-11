@@ -51,7 +51,7 @@ class ResizableArray {
                 }
                 val newArray=IntArray(capacity)
                 for(i in 0 until index){
-                        newArray[array[i]]
+                        newArray[i]=array[i]
                     }
                 newArray[index]=item
 
@@ -66,6 +66,20 @@ class ResizableArray {
 
     override fun toString(): String {
         return "ResizableArray(array=${array.contentToString()},  size=$size)"
+    }
+
+    fun prepend(item: Int){
+        size++
+        if(size>=capacity){
+            capacity*=2
+        }
+        val newArray= IntArray(capacity)
+        newArray[0]=item
+       for(i in 1 until size){
+           newArray[i]=array[i-1]
+       }
+        array=newArray
+
     }
 
 

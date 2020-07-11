@@ -9,13 +9,15 @@ public fun main(args: Array<String>) {
     }
     println(arrayList.isEmpty())
 
-    arrayList.insert(0,66666)
-    arrayList.insert(0,77777)
+    arrayList.insert(5,66666)
+    arrayList.insert(2,77777)
 
-    arrayList.insert(0,88888)
+    arrayList.insert(3,88888)
 
-    arrayList.insert(0,10101010)
+    arrayList.insert(7,10101010)
 
+    println(arrayList.toString())
+    arrayList.prepend(12121212)
     println(arrayList.toString())
 
 
