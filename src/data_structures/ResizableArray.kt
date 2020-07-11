@@ -38,27 +38,27 @@ class ResizableArray {
 
     fun getSize() = size
 
-    fun insert(index: Int,item:Int) {
+    fun insert(index: Int, item: Int) {
         if (index < 0 || index > size) {
             throw IndexOutOfBoundsException()
         } else {
-            if(index==size){
+            if (index == size) {
                 push(index)
-            }else{
+            } else {
                 size++
-                if(size>=capacity) {
+                if (size >= capacity) {
                     capacity *= 2
                 }
-                val newArray=IntArray(capacity)
-                for(i in 0 until index){
-                        newArray[i]=array[i]
-                    }
-                newArray[index]=item
-
-                for( i in index until size-1){
-                    newArray[i+1]=array[i]
+                val newArray = IntArray(capacity)
+                for (i in 0 until index) {
+                    newArray[i] = array[i]
                 }
-                array=newArray
+                newArray[index] = item
+
+                for (i in index until size - 1) {
+                    newArray[i + 1] = array[i]
+                }
+                array = newArray
             }
 
         }
@@ -68,19 +68,25 @@ class ResizableArray {
         return "ResizableArray(array=${array.contentToString()},  size=$size)"
     }
 
-    fun prepend(item: Int){
+    fun prepend(item: Int) {
         size++
-        if(size>=capacity){
-            capacity*=2
+        if (size >= capacity) {
+            capacity *= 2
         }
-        val newArray= IntArray(capacity)
-        newArray[0]=item
-       for(i in 1 until size){
-           newArray[i]=array[i-1]
-       }
-        array=newArray
+        val newArray = IntArray(capacity)
+        newArray[0] = item
+        for (i in 1 until size) {
+            newArray[i] = array[i - 1]
+        }
+        array = newArray
 
     }
 
+    fun pop(): Int {
+        val lastItem = array[size - 1]
+        array[size - 1] = 0
+        size--
+        return lastItem
+    }
 
 }

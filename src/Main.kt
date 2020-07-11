@@ -20,6 +20,13 @@ public fun main(args: Array<String>) {
     arrayList.prepend(12121212)
     println(arrayList.toString())
 
+    arrayList.pop()
+    arrayList.pop()
+
+    println(arrayList.toString())
+
+
+
 
 
 }
