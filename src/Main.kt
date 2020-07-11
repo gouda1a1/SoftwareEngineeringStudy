@@ -2,12 +2,12 @@ import data_structures.ResizableArray
 
 public fun main(args: Array<String>) {
     val arrayList = ResizableArray()
-
-  repeat(100){
-      arrayList.add(it)
-      println(arrayList.getSize())
-
-  }
+    println(arrayList.isEmpty())
+    repeat(17) {
+        arrayList.push(it)
+        println(arrayList.at(it * 1))
+    }
+    println(arrayList.isEmpty())
 
 
 }

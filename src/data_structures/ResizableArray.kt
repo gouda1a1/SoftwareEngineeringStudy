@@ -6,8 +6,8 @@ class ResizableArray {
     private var array = IntArray(16)
     private var capacity = 16
     private var size = 0
-    fun add(input: Int) {
-        if (size == capacity ) {
+    fun push(input: Int) {
+        if (size == capacity) {
             capacity *= 2
             val newArray = IntArray(capacity)
             var index = 0
@@ -26,7 +26,9 @@ class ResizableArray {
 
     }
 
-    fun get(index: Int): Int {
+    fun isEmpty() = size == 0
+
+    fun at(index: Int): Int {
         if (index < 0 || index >= size) {
             throw IndexOutOfBoundsException()
         } else {
@@ -35,4 +37,12 @@ class ResizableArray {
     }
 
     fun getSize() = size
+
+    fun insert(index: Int,item:Int) {
+        if (index < 0 || index >= size) {
+            throw IndexOutOfBoundsException()
+        } else {
+
+        }
+    }
 }
