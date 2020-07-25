@@ -1,89 +1,20 @@
+import data_structures.LinkedList
 import data_structures.ResizableArray
 
 public fun main(args: Array<String>) {
-    val arrayList = ResizableArray()
-    println(arrayList.isEmpty())
-    repeat(16) {
-        arrayList.push(it)
-        println(arrayList.toString())
-    }
-    println(arrayList.isEmpty())
+val linkedList=LinkedList()
 
-    arrayList.insert(5,66666)
-    arrayList.insert(2,77777)
+    linkedList.pushFront(5)
+    linkedList.pushFront(4)
+    linkedList.pushFront(3)
+    linkedList.pushFront(2)
+    linkedList.pushFront(1)
 
-    arrayList.insert(3,88888)
-
-    arrayList.insert(7,10101010)
-
-    println(arrayList.toString())
-    arrayList.prepend(12121212)
-    println(arrayList.toString())
-
-    arrayList.pop()
-    arrayList.pop()
-
-    println(arrayList.toString())
-
-    arrayList.delete(5)
-    println(arrayList.toString())
-
-    arrayList.remove(77777)
-
-    println(arrayList.toString())
-
-    println(arrayList.find(66666))
-    println(arrayList.find(77777))
+    println(linkedList.valueAt(0)?.value)
+    //println(linkedList.valueAt(6))
 
 
-    arrayList.pop()
-
-    arrayList.pop()
-
-    arrayList.pop()
-
-    arrayList.pop()
-
-    arrayList.pop()
-
-    arrayList.pop()
-    arrayList.pop()
-    arrayList.pop()
-    arrayList.pop()
-    arrayList.pop()
-    arrayList.pop()
-    arrayList.pop()
-    arrayList.pop()
-
-
-
-
-
-    println(arrayList.toString())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    println(linkedList.toString())
 
 
 
