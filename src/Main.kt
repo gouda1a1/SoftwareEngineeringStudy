@@ -2,7 +2,7 @@ import data_structures.LinkedList
 import data_structures.ResizableArray
 
 public fun main(args: Array<String>) {
-val linkedList=LinkedList()
+    val linkedList = LinkedList()
 
     linkedList.pushFront(5)
     linkedList.pushFront(4)
@@ -10,13 +10,14 @@ val linkedList=LinkedList()
     linkedList.pushFront(2)
     linkedList.pushFront(1)
 
-    println(linkedList.valueAt(0)?.value)
-    //println(linkedList.valueAt(6))
+    println(linkedList.toString())
+    linkedList.remove(2)
+    linkedList.remove(5)
+
+    linkedList.remove(10)
 
 
     println(linkedList.toString())
-
-
 
 
 }
