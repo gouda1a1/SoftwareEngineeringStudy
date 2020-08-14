@@ -62,7 +62,10 @@ class LinkedList {
                 tail = tail.next
             }
             tail?.next = node
+
         }
+        size++
+
     }
 
     fun popBack(): Int {
@@ -72,6 +75,7 @@ class LinkedList {
         } else {
             if (localHead.next == null) {
                 head = null
+                size--
                 return localHead.value
             } else {
                 var beforeTail = localHead
@@ -82,6 +86,7 @@ class LinkedList {
                 }
                 beforeTail?.next = null
                 if (tail != null) {
+                    size--
                     return tail.value
                 }
             }
@@ -160,5 +165,17 @@ class LinkedList {
 
         }
     }
+
+    fun reverse() {
+        val localHead = head
+        val newLinkedList = LinkedList()
+        for (index in 0 until size) {
+            newLinkedList.pushBack(popBack())
+        }
+        this.size = newLinkedList.size
+        this.head = newLinkedList.head
+
+    }
+
 
 }
