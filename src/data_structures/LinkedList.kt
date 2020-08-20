@@ -3,17 +3,17 @@ package data_structures
 import data_structures.exceptions.LinkedListEmptyException
 import java.lang.Exception
 
-class LinkedList {
+class LinkedList : ILinkedList {
     private var head: Node? = null
     private var size = 0
-    fun getSize() = size
+    override fun getSize() = size
     class Node {
         var value: Int = 0
         var next: Node? = null
     }
 
-    fun empty() = size == 0
-    fun valueAt(index: Int): Node? {
+    override fun empty() = size == 0
+    override fun valueAt(index: Int): Int? {
         var start = 0
         var currantNode = head
         if (size == 0) {
@@ -26,10 +26,10 @@ class LinkedList {
             start++
             currantNode = currantNode?.next
         }
-        return currantNode
+        return currantNode?.value
     }
 
-    fun pushFront(value: Int) {
+    override fun pushFront(value: Int) {
         val node = Node()
         node.value = value
         node.next = head
@@ -37,7 +37,7 @@ class LinkedList {
         size++
     }
 
-    fun popFront(): Int {
+    override fun popFront(): Int {
         val localCopy = head
         if (localCopy != null) {
             val nextTOHead = localCopy.next
@@ -49,7 +49,7 @@ class LinkedList {
         }
     }
 
-    fun pushBack(value: Int) {
+    override fun pushBack(value: Int) {
         val localCopy = head
         val node = Node()
         node.next = null
@@ -68,7 +68,7 @@ class LinkedList {
 
     }
 
-    fun popBack(): Int {
+    override fun popBack(): Int {
         val localHead = head
         if (localHead == null) {
             throw  LinkedListEmptyException()
@@ -96,16 +96,16 @@ class LinkedList {
     }
 
 
-    fun front(): Int {
+    override fun front(): Int {
         return head?.value ?: throw LinkedListEmptyException()
     }
 
-    fun back(): Int {
+    override fun back(): Int {
         val tail = valueAt(size - 1)
-        return tail?.value ?: throw LinkedListEmptyException()
+        return tail ?: throw LinkedListEmptyException()
     }
 
-    fun insertAt(index: Int, value: Int) {
+    override fun insertAt(index: Int, value: Int) {
         if (index == 0) {
             pushFront(value)
             return
@@ -134,25 +134,28 @@ class LinkedList {
         return "$toString size= $size"
     }
 
-    fun erase(index: Int) {
+    override fun erase(index: Int) {
         if (size == 0) {
             throw   LinkedListEmptyException()
         }
         if (index == 0) {
             head = head?.next
+            size--
             return
         }
         val beforeIndex = valueAt(index - 1)
         val valueAtIndex = valueAt(index)
         beforeIndex?.next = valueAtIndex?.next
+        size--
+
 
     }
 
-    fun value_n_from_end(index: Int): Node? {
-        return valueAt((size - 1) - index)
+    override fun value_n_from_end(index: Int): Int {
+        return valueAt((size - 1) - index)?.value?:throw IndexOutOfBoundsException()
     }
 
-    fun remove(value: Int) {
+    override fun remove(value: Int) {
         var currantNode = head
         var index = 0;
         while (currantNode != null) {
@@ -166,16 +169,13 @@ class LinkedList {
         }
     }
 
-    fun reverse() {
-        val localHead = head
+    override fun reverse() {
         val newLinkedList = LinkedList()
         for (index in 0 until size) {
             newLinkedList.pushBack(popBack())
         }
         this.size = newLinkedList.size
         this.head = newLinkedList.head
-
     }
-
 
 }
