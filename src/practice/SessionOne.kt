@@ -4,7 +4,7 @@ import java.util.*
 import kotlin.math.absoluteValue
 
 
-/* problems
+/* problems  session 1
 1-https://www.hackerrank.com/challenges/array-left-rotation/problem
 2-https://www.hackerrank.com/challenges/sparse-arrays/problem
 3-https://www.hackerrank.com/challenges/detect-whether-a-linked-list-contains-a-cycle/problem
@@ -20,7 +20,7 @@ fun sessionOneRunner() {
 fun rotateLeft(d: Int, arr: Array<Int>): Array<Int> {
     // Write your code here
     val newArray = Array(arr.size) { 0 }
-    arr.forEachIndexed { index, i ->
+    arr.forEach {i ->
         var newIndex = i - d - 1
         if (newIndex < 0) {
             newIndex += arr.size
