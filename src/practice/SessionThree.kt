@@ -15,8 +15,50 @@ problems
 
 fun sessionThreeRunner() {
 
-  println(queensAttack(4,0,4,4, emptyArray()))
+    println(nonDivisibleSubset(3, arrayOf(1, 7, 2, 4)))
+    println(nonDivisibleSubset(7, arrayOf(278, 576, 496, 727, 410, 124, 338, 149, 209, 702, 282, 718, 771, 575, 436)))
 
+}
+
+
+fun nonDivisibleSubset(k: Int, s: Array<Int>): Int {
+    var maximum = 0
+    val mapOfTowPairs = HashMap<Int, HashSet<Int>>()
+    for (x in s.indices) {
+        for (y in s.indices) {
+            if (x == y) {
+                continue
+            }
+            if (((s[x] + s[y]) % k) != 0) {
+                if (mapOfTowPairs[s[x]] == null) {
+                    mapOfTowPairs[s[x]] = HashSet()
+                }
+                mapOfTowPairs[s[x]]!!.add(s[y])
+            }
+        }
+    }
+    println(mapOfTowPairs.toString())
+
+    for (x in mapOfTowPairs.keys) {
+        for (y in mapOfTowPairs.keys) {
+            if (x == y) {
+                continue
+            } else {
+                val xSet = mapOfTowPairs[x]
+                val ySet = mapOfTowPairs[y]
+                if (xSet!!.contains(y)) {
+                    val size = (xSet.intersect(ySet!!.toList()).size)
+                    println("size:$size")
+                    if (maximum < size) {
+                        maximum = size
+                    }
+                } else {
+                    continue
+                }
+            }
+        }
+    }
+    return maximum
 }
 
 enum class Operation {
@@ -27,9 +69,9 @@ data class Route(val num: Int, val operationX: Operation, val operationY: Operat
 
 fun queensAttack(n: Int, k: Int, r_q: Int, c_q: Int, obstacles: Array<Array<Int>>): Int {
 
-    val obstaclesMap = HashMap<String,Int>()
+    val obstaclesMap = HashMap<String, Int>()
     obstacles.forEach {
-        obstaclesMap.put(""+it[0]+"-"+it[1],0)
+        obstaclesMap.put("" + it[0] + "-" + it[1], 0)
     }
 
     val routes = arrayOf(
@@ -60,9 +102,9 @@ fun queensAttack(n: Int, k: Int, r_q: Int, c_q: Int, obstacles: Array<Array<Int>
             Operation.PLUS -> routStartY + 1
             Operation.STILL -> routStartY
         }
-        while (routStartX <= n && routStartY <= n&&routStartX>=1&&routStartY>=1) {
+        while (routStartX <= n && routStartY <= n && routStartX >= 1 && routStartY >= 1) {
             if (obstaclesMap.containsKey("$routStartX-$routStartY")) {
-                routStartX=n+1
+                routStartX = n + 1
             } else {
                 validPoints++
                 routStartX = when (it.operationX) {
@@ -84,10 +126,9 @@ fun queensAttack(n: Int, k: Int, r_q: Int, c_q: Int, obstacles: Array<Array<Int>
 }
 
 
-
-fun isObstacles(routStartX: Int, routStartY: Int,obstacles: Array<Array<Int>>): Boolean {
+fun isObstacles(routStartX: Int, routStartY: Int, obstacles: Array<Array<Int>>): Boolean {
     obstacles.forEach {
-        if(it[0]==routStartX&&it[1]==routStartY){
+        if (it[0] == routStartX && it[1] == routStartY) {
             return true
         }
     }
